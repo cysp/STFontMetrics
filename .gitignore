@@ -1,0 +1,8 @@
+.DS_Store
+*.xcodeproj/*.xcworkspace
+*.xcodeproj/xcuserdata
+*.pbxuser
+!default.pbxuser
+xcuserdata
+*.xccheckout
+*.xcscmblueprint
