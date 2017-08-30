@@ -1,0 +1,15 @@
+osx_image: xcode9
+language: objective-c
+xcode_project: STFontMetrics.xcodeproj
+xcode_sdk: iphonesimulator
+xcode_scheme: STFontMetrics
+env:
+    - TRAVIS_XCODE_DESTINATION="platform=iOS Simulator,name=iPhone 6s,OS=9.3"
+    - TRAVIS_XCODE_DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=10.3.1"
+    - TRAVIS_XCODE_DESTINATION="platform=iOS Simulator,name=iPhone 7,OS=11.0"
+branches:
+    only:
+        - master
+before_script:
+    - gem install xcpretty
+script: set -o pipefail && xcodebuild test -project "${TRAVIS_XCODE_PROJECT}" -scheme "${TRAVIS_XCODE_SCHEME}" -sdk "${TRAVIS_XCODE_SDK}" -destination "${TRAVIS_XCODE_DESTINATION}" | xcpretty
