@@ -8,6 +8,30 @@
 #import <UIKit/UIKit.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface STFontMetrics : NSObject
 
+@property (class,readonly,strong) STFontMetrics *defaultMetrics;
+
++ (instancetype)metricsForTextStyle:(UIFontTextStyle)textStyle;
+
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initForTextStyle:(UIFontTextStyle)textStyle NS_DESIGNATED_INITIALIZER;
+
+- (UIFont *)scaledFontForFont:(UIFont *)font;
+- (UIFont *)scaledFontForFont:(UIFont *)font maximumPointSize:(CGFloat)maximumPointSize;
+- (UIFont *)scaledFontForFont:(UIFont *)font compatibleWithTraitCollection:(nullable UITraitCollection *)traitCollection __WATCHOS_PROHIBITED;
+- (UIFont *)scaledFontForFont:(UIFont *)font maximumPointSize:(CGFloat)maximumPointSize compatibleWithTraitCollection:(nullable UITraitCollection *)traitCollection __WATCHOS_PROHIBITED;
+
+- (CGFloat)scaledValueForValue:(CGFloat)value;
+- (CGFloat)scaledValueForValue:(CGFloat)value compatibleWithTraitCollection:(nullable UITraitCollection *)traitCollection __WATCHOS_PROHIBITED;
+
 @end
+
+extern CGFloat STRoundToScale(CGFloat value);
+extern CGFloat STFontBodyLeading(UIFont *font);
+extern BOOL STFontIsSupportedDynamicFontTextStyle(UIFontTextStyle textStyle);
+extern CGFloat STFontScaledValueForValue(UIFont *font, CGFloat value);
+
+NS_ASSUME_NONNULL_END

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C69B8001F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69B7FF1F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m */; };
 		2C7D91461F56B2C100C4E59F /* STFontMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D91451F56B2C100C4E59F /* STFontMetrics.m */; };
 		2C7D91471F56B2C100C4E59F /* STFontMetrics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C7D91441F56B2C100C4E59F /* STFontMetrics.h */; };
 		2C7D91541F56B32900C4E59F /* STFontMetricsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D91531F56B32900C4E59F /* STFontMetricsTests.m */; };
 		2C7D91561F56B32900C4E59F /* libSTFontMetrics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7D91411F56B2C100C4E59F /* libSTFontMetrics.a */; };
+		2C7D915D1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D915C1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +39,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C272B241F56E22D0088E94C /* STFontMetrics+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STFontMetrics+Internal.h"; sourceTree = "<group>"; };
+		2C69B7FF1F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STFontMetricsScaledFontTests.m; sourceTree = "<group>"; };
 		2C7D91411F56B2C100C4E59F /* libSTFontMetrics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTFontMetrics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7D91441F56B2C100C4E59F /* STFontMetrics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STFontMetrics.h; sourceTree = "<group>"; };
 		2C7D91451F56B2C100C4E59F /* STFontMetrics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STFontMetrics.m; sourceTree = "<group>"; };
 		2C7D91511F56B32900C4E59F /* STFontMetricsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STFontMetricsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7D91531F56B32900C4E59F /* STFontMetricsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STFontMetricsTests.m; sourceTree = "<group>"; };
 		2C7D91551F56B32900C4E59F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C7D915C1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STFontMetricsScaledValueTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7D91441F56B2C100C4E59F /* STFontMetrics.h */,
+				2C272B241F56E22D0088E94C /* STFontMetrics+Internal.h */,
 				2C7D91451F56B2C100C4E59F /* STFontMetrics.m */,
 			);
 			path = STFontMetrics;
@@ -96,6 +102,8 @@
 			children = (
 				2C7D91551F56B32900C4E59F /* Info.plist */,
 				2C7D91531F56B32900C4E59F /* STFontMetricsTests.m */,
+				2C69B7FF1F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m */,
+				2C7D915C1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m */,
 			);
 			path = STFontMetricsTests;
 			sourceTree = "<group>";
@@ -199,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7D91541F56B32900C4E59F /* STFontMetricsTests.m in Sources */,
+				2C69B8001F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m in Sources */,
+				2C7D915D1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
