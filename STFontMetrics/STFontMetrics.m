@@ -56,6 +56,24 @@ BOOL STFontIsSupportedDynamicFontTextStyle(UIFontTextStyle textStyle) {
     return [supportedTextStyles containsObject:textStyle];
 }
 
+static inline UIContentSizeCategory STFontMetricsScaledFontTestsPreferredContentSizeCategory(void) {
+    UIContentSizeCategory contentSizeCategory;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+    NSOperatingSystemVersion const operatingSystemVersion = NSProcessInfo.processInfo.operatingSystemVersion;
+    switch (operatingSystemVersion.majorVersion) {
+        case 9 ... 10:
+            contentSizeCategory = UIContentSizeCategoryMedium;
+            break;
+        default:
+            contentSizeCategory = UIContentSizeCategoryLarge;
+            break;
+    }
+#else
+    contentSizeCategory = UIApplication.sharedApplication.preferredContentSizeCategory ?: UIContentSizeCategoryLarge;
+#endif
+    return contentSizeCategory;
+}
+
 CGFloat STFontScaledValueForValue(UIFont *font, CGFloat value) {
     UIFontDescriptor * const fontDescriptor = font.fontDescriptor;
     UIFontTextStyle const fontTextStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute];
@@ -66,16 +84,7 @@ CGFloat STFontScaledValueForValue(UIFont *font, CGFloat value) {
     CGFloat const fontBodyLeading = STFontBodyLeading(font);
 
     UIFont *preferredFont;
-    UIContentSizeCategory contentSizeCategory;
-    NSOperatingSystemVersion const operatingSystemVersion = NSProcessInfo.processInfo.operatingSystemVersion;
-    switch (operatingSystemVersion.majorVersion) {
-        case 9 ... 10:
-            contentSizeCategory = UIContentSizeCategoryMedium;
-            break;
-        default:
-            contentSizeCategory = UIContentSizeCategoryLarge;
-            break;
-    }
+    UIContentSizeCategory const contentSizeCategory = STFontMetricsScaledFontTestsPreferredContentSizeCategory();
 
 #if __has_builtin(__builtin_available)
     if (@available(iOS 10, *)) {
