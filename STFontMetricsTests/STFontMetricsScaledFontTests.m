@@ -8,25 +8,7 @@
 #import <XCTest/XCTest.h>
 
 #import "STFontMetrics.h"
-
-
-static inline UIContentSizeCategory STFontMetricsScaledFontTestsPreferredContentSizeCategory(void) {
-    UIContentSizeCategory contentSizeCategory;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
-    NSOperatingSystemVersion const operatingSystemVersion = NSProcessInfo.processInfo.operatingSystemVersion;
-    switch (operatingSystemVersion.majorVersion) {
-        case 9 ... 10:
-            contentSizeCategory = UIContentSizeCategoryMedium;
-            break;
-        default:
-            contentSizeCategory = UIContentSizeCategoryLarge;
-            break;
-    }
-#else
-    contentSizeCategory = UIApplication.sharedApplication.preferredContentSizeCategory ?: UIContentSizeCategoryLarge;
-#endif
-    return contentSizeCategory;
-}
+#import "STFontMetrics+Internal.h"
 
 
 @interface STFontMetricsScaledFontTests : XCTestCase
@@ -36,7 +18,7 @@ static inline UIContentSizeCategory STFontMetricsScaledFontTestsPreferredContent
 
 #define X(ts) \
 - (void)testNoop##ts { \
-    UIContentSizeCategory const contentSizeCategory = STFontMetricsScaledFontTestsPreferredContentSizeCategory(); \
+    UIContentSizeCategory const contentSizeCategory = STFontMetricsDefaultContentSizeCategory(); \
     for (NSUInteger pointSize = 0; pointSize <= 144; ++pointSize) { \
         [self st_testScaledFontWithInitialPointSize:pointSize textStyle:UIFontTextStyle##ts contentSizeCategory:contentSizeCategory noop:YES]; \
     } \

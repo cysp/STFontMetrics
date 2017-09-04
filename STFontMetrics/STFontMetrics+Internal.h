@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern UIContentSizeCategory STFontMetricsDefaultContentSizeCategory(void);
 extern CGFloat STRoundToScale(CGFloat value);
 extern CGFloat STFontBodyLeading(UIFont *font);
 extern BOOL STFontIsSupportedDynamicFontTextStyle(UIFontTextStyle textStyle);

@@ -29,9 +29,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-extern CGFloat STRoundToScale(CGFloat value);
-extern CGFloat STFontBodyLeading(UIFont *font);
-extern BOOL STFontIsSupportedDynamicFontTextStyle(UIFontTextStyle textStyle);
-extern CGFloat STFontScaledValueForValue(UIFont *font, CGFloat value);
-
 NS_ASSUME_NONNULL_END

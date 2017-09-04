@@ -45,17 +45,21 @@ class ViewController: UIViewController {
 //    }
 
     func configureView() {
-        let font = UIFont(descriptor: UIFont.systemFont(ofSize: 17).fontDescriptor.addingAttributes([
-            UIFontDescriptorTextStyleAttribute: UIFontTextStyle.body,
-        ]), size: 17)
+        let font = UIFont(name: "Papyrus", size: 17)!
+//        let font = UIFont(descriptor: fontDescriptor.addingAttributes([
+//            UIFontDescriptorTextStyleAttribute: UIFontTextStyle.body,
+//        ]), size: 17)
+//        let font = UIFont(descriptor: UIFont.systemFont(ofSize: 17).fontDescriptor.addingAttributes([
+//            UIFontDescriptorTextStyleAttribute: UIFontTextStyle.body,
+//        ]), size: 17)
         let stm = STFontMetrics(forTextStyle: .body)
         stfontmetricsLabel?.font = stm.scaledFont(for: font)
-//        if #available(iOS 11.0, *) {
-//            let uim = UIFontMetrics(forTextStyle: .body)
-//            uifontmetricsLabel?.font = uim.scaledFont(for: font)
-//        } else {
+        if #available(iOS 11.0, *) {
+            let uim = UIFontMetrics(forTextStyle: .body)
+            uifontmetricsLabel?.font = uim.scaledFont(for: font)
+        } else {
             uifontmetricsLabel?.isHidden = true
-//        }
+        }
     }
 
     func configureViewDebugging() {
