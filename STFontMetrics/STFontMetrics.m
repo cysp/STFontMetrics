@@ -183,10 +183,12 @@ CGFloat STFontPointSizeScaledLikeTextStyle(Class UIFontClass, CGFloat pointSize,
     UIFont *font;
 #if __has_builtin(__builtin_available)
     if (@available(iOS 10.0, *)) {
+#else
+    if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:compatibleWithTraitCollection:)]) {
+#endif
         font = [UIFont preferredFontForTextStyle:_textStyle compatibleWithTraitCollection:traitCollection];
         NSAssert(font, @"");
     }
-#endif
     if (!font) {
         font = [UIFont preferredFontForTextStyle:_textStyle];
     }

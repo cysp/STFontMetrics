@@ -15,24 +15,24 @@
 
 @implementation STFontMetricsScaledValueTests
 
-#define X(ts) \
-- (void)testNoop##ts { \
-    [self st_testNoopWithTextStyle:UIFontTextStyle##ts];\
-}
-
-//X(UIFontTextStyleLargeTitle)
-X(Title1)
-X(Title2)
-X(Title3)
-X(Headline)
-X(Subheadline)
-X(Body)
-X(Callout)
-X(Footnote)
-X(Caption1)
-X(Caption2)
-
-#undef X
+//#define X(ts) \
+//- (void)testNoop##ts { \
+//    [self st_testNoopWithTextStyle:UIFontTextStyle##ts];\
+//}
+//
+////X(UIFontTextStyleLargeTitle)
+//X(Title1)
+//X(Title2)
+//X(Title3)
+//X(Headline)
+//X(Subheadline)
+//X(Body)
+//X(Callout)
+//X(Footnote)
+//X(Caption1)
+//X(Caption2)
+//
+//#undef X
 
 #define X(ts, csc) \
 - (void)testScaledValues##ts##csc { \
@@ -163,23 +163,34 @@ X(Caption2, AccessibilityExtraExtraExtraLarge)
 #undef X
 
 
-- (void)st_testNoopWithTextStyle:(UIFontTextStyle)textStyle {
-    UIContentSizeCategory contentSizeCategory;
-
-    NSOperatingSystemVersion const operatingSystemVersion = NSProcessInfo.processInfo.operatingSystemVersion;
-    switch (operatingSystemVersion.majorVersion) {
-        case 9 ... 10:
-            contentSizeCategory = UIContentSizeCategoryMedium;
-            break;
-        default:
-            contentSizeCategory = UIContentSizeCategoryLarge;
-            break;
-    }
-
-    for (NSUInteger value = 0; value < 144; ++value) {
-        [self st_testScaledValue:value withTextStyle:textStyle contentSizeCategory:contentSizeCategory noop:YES];
-    }
+#define X(csc, ts, v, ev) \
+- (void)testScaledValue##csc##ts##_##v { \
+    [self st_testContentSizeCategory:UIContentSizeCategory##csc textStyle:UIFontTextStyle##ts value:v expectedValue:ev]; \
 }
+
+X(Medium, Body, 40, 38+1./3.)
+X(Large, Body, 40, 40)
+
+#undef X
+
+
+//- (void)st_testNoopWithTextStyle:(UIFontTextStyle)textStyle {
+//    UIContentSizeCategory contentSizeCategory;
+//
+//    NSOperatingSystemVersion const operatingSystemVersion = NSProcessInfo.processInfo.operatingSystemVersion;
+//    switch (operatingSystemVersion.majorVersion) {
+//        case 9 ... 10:
+//            contentSizeCategory = UIContentSizeCategoryMedium;
+//            break;
+//        default:
+//            contentSizeCategory = UIContentSizeCategoryLarge;
+//            break;
+//    }
+//
+//    for (NSUInteger value = 0; value < 144; ++value) {
+//        [self st_testScaledValue:value withTextStyle:textStyle contentSizeCategory:contentSizeCategory noop:YES];
+//    }
+//}
 
 - (void)st_testScaledValuesWithTextStyle:(UIFontTextStyle)textStyle contentSizeCategory:(UIContentSizeCategory)contentSizeCategory {
     for (NSUInteger value = 0; value < 144; ++value) {
@@ -212,6 +223,31 @@ X(Caption2, AccessibilityExtraExtraExtraLarge)
         XCTAssertEqual(scaledValue, uiScaledValue);
     }
 #endif
+}
+
+- (void)st_testContentSizeCategory:(UIContentSizeCategory)contentSizeCategory textStyle:(UIFontTextStyle)textStyle value:(CGFloat)value expectedValue:(CGFloat)expectedValue {
+    UITraitCollection *traits;
+#if __has_builtin(__builtin_available)
+    if (@available(iOS 10, *)) {
+#else
+    if ([UITraitCollection respondsToSelector:@selector(traitCollectionWithPreferredContentSizeCategory:)]) {
+#endif
+        traits = [UITraitCollection traitCollectionWithPreferredContentSizeCategory:contentSizeCategory];
+    }
+
+    STFontMetrics * const metrics = [STFontMetrics metricsForTextStyle:textStyle];
+    CGFloat const scaledValue = [metrics scaledValueForValue:value compatibleWithTraitCollection:traits];
+
+#if __has_builtin(__builtin_available)
+    if (@available(iOS 11, *)) {
+        UIFontMetrics * const uiMetrics = [UIFontMetrics metricsForTextStyle:textStyle];
+        CGFloat const uiScaledValue = [uiMetrics scaledValueForValue:value compatibleWithTraitCollection:traits];
+
+        XCTAssertEqual(scaledValue, uiScaledValue);
+    }
+#endif
+
+    XCTAssertEqual(scaledValue, expectedValue);
 }
 
 @end
