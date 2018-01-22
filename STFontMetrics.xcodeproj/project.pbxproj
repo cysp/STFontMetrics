@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		2C272B241F56E22D0088E94C /* STFontMetrics+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STFontMetrics+Internal.h"; sourceTree = "<group>"; };
+		2C437B5A2015D83E00363F06 /* UIApplication+STFontMetricsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+STFontMetricsTests.h"; sourceTree = "<group>"; };
 		2C69B7FF1F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STFontMetricsScaledFontTests.m; sourceTree = "<group>"; };
 		2C7D91411F56B2C100C4E59F /* libSTFontMetrics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSTFontMetrics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7D91441F56B2C100C4E59F /* STFontMetrics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STFontMetrics.h; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7D91551F56B32900C4E59F /* Info.plist */,
+				2C437B5A2015D83E00363F06 /* UIApplication+STFontMetricsTests.h */,
 				2C7D91531F56B32900C4E59F /* STFontMetricsTests.m */,
 				2C69B7FF1F580EA6003F9CB1 /* STFontMetricsScaledFontTests.m */,
 				2C7D915C1F56CBEC00C4E59F /* STFontMetricsScaledValueTests.m */,

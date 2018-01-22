@@ -8,11 +8,20 @@
 #import <XCTest/XCTest.h>
 
 #import "STFontMetrics.h"
+#import "STFontMetrics+Internal.h"
+#import "UIApplication+STFontMetricsTests.h"
 
 
 @interface STFontMetricsTests : XCTestCase
 @end
 
 @implementation STFontMetricsTests
+
+- (void)testDefaultContentSizeCategory {
+    UIContentSizeCategory const ui = UIApplication._defaultContentSizeCategory;
+    UIContentSizeCategory const st = STFontMetricsDefaultContentSizeCategory();
+
+    XCTAssertEqualObjects(ui, st);
+}
 
 @end
